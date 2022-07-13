@@ -1,5 +1,5 @@
-{%- extends 'display_priority.tpl' -%}
-{% from 'mathjax.tpl' import mathjax %}
+{%- extends 'display_priority.j2' -%}
+{% from 'mathjax.html.j2' import mathjax %}
 
 {%- block header -%}
 {%- if resources.generate_toc %}
@@ -57,11 +57,10 @@ In&nbsp;[&nbsp;]:
 {% endblock output_prompt %}
 
 {% block input %}
-<div class="inner_cell">
-    <div class="input_area">
-{{ cell.source | highlight_code(metadata=cell.metadata) }}
-</div>
-</div>
+<ac:structured-macro ac:name="code" ac:schema-version="1">
+    <ac:parameter ac:name="language">python</ac:parameter>
+    <ac:plain-text-body><![CDATA[{{ cell.source }}]]></ac:plain-text-body>
+</ac:structured-macro>
 {%- endblock input %}
 
 {% block output %}
@@ -145,7 +144,7 @@ unknown type  {{ cell.type }}
 {% block data_png scoped %}
 <div class="output_png output_subarea {{ extra_class }}">
 {%- if 'image/png' in output.metadata.get('filenames', {}) %}
-<ac:image><ri:url ri:value="{{ resources['attachments'][output.metadata.filenames['image/png']][2] }}" /></ac:image>
+<ac:image ac:align="center"><ri:url ri:value="{{ resources['attachments'][output.metadata.filenames['image/png']][2] }}" /></ac:image>
 {%- endif %}
 </div>
 {%- endblock data_png %}
@@ -153,7 +152,7 @@ unknown type  {{ cell.type }}
 {% block data_jpg scoped %}
 <div class="output_jpeg output_subarea {{ extra_class }}">
 {%- if 'image/jpeg' in output.metadata.get('filenames', {}) %}
-<ac:image><ri:url ri:value="{{ resources['attachments'][output.metadata.filenames['image/jpeg']][2] }}" /></ac:image>
+<ac:image ac:align="center"><ri:url ri:value="{{ resources['attachments'][output.metadata.filenames['image/jpeg']][2] }}" /></ac:image>
 {%- endif %}
 </div>
 {%- endblock data_jpg %}
@@ -201,28 +200,6 @@ unknown type  {{ cell.type }}
 <hr />
 <p><em>This page originated from the notebook <a href="{{ resources['attachments'][resources['notebook_filename']]['download_url'] }}">{{ resources['notebook_filename'] }}</a> which is attached to this page for safe keeping.</em></p>
 {%- endif %}
-
-<ac:structured-macro ac:macro-id="8250dedf-fcaa-48da-b12d-0f929c620dc4" ac:name="style" ac:schema-version="1">
-    <ac:parameter ac:name="import">https://nbviewer.jupyter.org/static/build/notebook.css</ac:parameter>
-</ac:structured-macro>
-
-<ac:structured-macro ac:macro-id="8250dedf-fcaa-48da-b12d-0f929c620dc4" ac:name="style" ac:schema-version="1">
-    <ac:plain-text-body><![CDATA[
-        a.anchor-link {
-            display: none !important;
-        }
-        body div.output_subarea {
-            max-width: none;
-        }
-        body.page-gadget #main {
-            width: auto;
-        }
-        body.page-gadget {
-            padding-top: 0;
-        }
-        ]]>
-    </ac:plain-text-body>
-</ac:structured-macro>
 
 {%- if resources.enable_mathjax %}
 <ac:structured-macro ac:macro-id="c5e95bac-43c5-4db4-abd0-af1dfcf97384" ac:name="html" ac:schema-version="1">
