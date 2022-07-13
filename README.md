@@ -3,6 +3,19 @@
 
 # nbconflux
 
+**Note: The upstream version of nbconflux is currently unmaintained.** 
+
+With a few fixes and modifications this tool works again and allows us to sync jupyter notebooks that we use to 
+document features in repo's automatically to confluence for a broader audience. So it was decided to put in some effort
+as to improve our internal documentation.
+
+Install this version by running:
+```bash
+pip install -e git+https://github.com/Ultimaker/nbconflux.git@egg=nbconflux
+```
+
+----------------------------------------------------------------
+
 nbconflux converts Jupyter Notebooks to [Atlassian Confluence](https://www.atlassian.com/software/confluence)
 pages using
 [nbconvert](https://github.com/jupyter/nbconvert).
