@@ -1,6 +1,5 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-
 # nbconflux
 
 **Note: The upstream version of nbconflux is currently unmaintained.** 
@@ -9,10 +8,27 @@ With a few fixes and modifications this tool works again and allows us to sync j
 document features in repo's automatically to confluence for a broader audience. So it was decided to put in some effort
 as to improve our internal documentation.
 
+## Installation
+
 Install this version by running:
+
 ```bash
 pip install -e git+https://github.com/Ultimaker/nbconflux.git@egg=nbconflux
 ```
+
+## Usage
+
+1. Create an API key for use by this tool on: https://id.atlassian.com/manage-profile/security/api-tokens
+2. Set environment variables: 
+   * CONFLUENCE_USERNAME: your email address 
+   * CONFLUENCE_PASSWORD: the API token
+3. Create or visit a page on your Confluence site.
+4. Copy the URL for the page.
+5. Run the following::
+    ```bash
+    nbconflux /path/to/a.ipynb https://your/page/url
+    ```
+6. Visit the page to see your updates.
 
 ----------------------------------------------------------------
 
